@@ -1,0 +1,21 @@
+.siderbarOption{
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    padding-left: 2px;
+    cursor: pointer;
+}
+.siderbarOption:hover{
+     background-color:#340e36;   
+     opacity: 0.9;
+
+}
+.siderbarOption_icon{
+    padding: 10px;
+    font-size:15px !important ;
+}
+.siderbarOption_channel{
+    padding: 10px 0;
+
+}
+
