@@ -1,4 +1,7 @@
 import React from 'react'
+import {useState, useEffect} from 'react';
+import "./firebase.js"
+import "./Sliderbar.js";
 import './Sliderbar.css';
 import SiderbarOption from './SidebarOption';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
@@ -13,15 +16,35 @@ import AppsIcon from '@material-ui/icons/Apps';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AddIcon from '@material-ui/icons/Add';
+import db from "./firebase";
+// import { useStateValue } from './StateProvider';
+
+
+
 function Sliderbar() {
+  const [channels, setChannels] = useState([]);
+    
+
+    useEffect(() => {
+        //run this code ONCE when the sidebar component loads 
+        db.collection('rooms').onSnapshot(snapshot => (
+            setChannels(
+                snapshot.docs.map((doc)=>({
+                id : doc.id,
+                name : doc.data().name,
+            }))
+            )
+            )
+        );
+    }, []);
   return (
-    <div className='sliderbar'>
+    <div className='siderbar'>
       <div className="sidebar_header">
          <div className='sidebar_info'>
             <h2>Programmer</h2>
-              <h3> 
+               <h3> 
                  <FiberManualRecordIcon/>
-                  Shivam Mourya
+                   Shivam Mourya
                </h3>
          </div>
             <CreateIcon/>
@@ -38,6 +61,9 @@ function Sliderbar() {
         <SiderbarOption Icon={ExpandMoreIcon} title="Channels"  />
         <hr/>
         <SiderbarOption Icon = {AddIcon} addChannelOption title = 'Add Channel' />
+        {/* { channels.map((channel) =>(
+           <SidebarOption title = {channel.name} id = {channel.id}/>
+))} */}
     </div>
   )
 }

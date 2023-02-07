@@ -1,15 +1,21 @@
 import React from 'react'
-import "./SiderbarOption.css";
-import MessageIcon from '@mui/icons-material/Message';
+import "./SidebarOption.css";
+
 
 
 
 function SiderbarOption({Icon,title}) {
   return (
-    <div className='siderbaroption'>
-        <MessageIcon/>
-        {/* {Icon && <Icon className="siderbaroption_icon">} */}
-      
+    <div className="sidebarOption" 
+    
+    >
+        {Icon && <Icon className="sidebarOption__icon" />}
+        {Icon ?( <h3>
+            {title}
+        </h3>
+        ):(<h3 className="sidebarOption__channel">
+            <span className = "sidebarOption__hash">#</span> {title}
+        </h3>)}
     </div>
   )
 }
